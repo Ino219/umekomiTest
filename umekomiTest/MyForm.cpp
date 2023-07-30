@@ -1,5 +1,6 @@
 #include "MyForm.h"
 
+
 using namespace umekomiTest;
 
 using namespace Microsoft::Office::Core;
@@ -27,8 +28,12 @@ System::Void umekomiTest::MyForm::MyForm_Load(System::Object ^ sender, System::E
 	Microsoft::Office::Interop::PowerPoint::Application^ apt = gcnew Microsoft::Office::Interop::PowerPoint::ApplicationClass();
 	Presentations^ presen = apt->Presentations;
 
-	Presentation^ presense1 = presen->Open("template_sample", MsoTriState::msoFalse, MsoTriState::msoFalse, MsoTriState::msoFalse);
-
+	try {
+		Presentation^ presense1 = presen->Open("C:\\Users\\chach\\Desktop\\template1", MsoTriState::msoFalse, MsoTriState::msoFalse, MsoTriState::msoTrue);
+	}
+	catch (Exception^ e) {
+		MessageBox::Show(e->ToString());
+	}
 	//PresentationClass^ presense1 = static_cast<Microsoft::Office::Interop::PowerPoint::PresentationClass^>(r->GetObject(L"templete_sample"));
 	//String^ getpath=presense1->Path;
 
